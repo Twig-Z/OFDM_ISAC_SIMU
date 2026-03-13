@@ -33,7 +33,7 @@ fs = n_fft * delta_f;   % 采样率
 n_cp = round(T_cp * fs);  % CP采样点数
 
 
-
+rho = 0.5;
 % 设置延迟-多普勒范围
 c = 3e8;  % 光速
 lambda = c / fc;  % 波长 ≈ 0.03 m
@@ -63,5 +63,9 @@ S_fd1(sc_start:sc_end, :) = qam_symbols;
 % 计算模糊函数和PSLR
 draw_flag = 1;
 tic
-[PSLR_weighted1, PSLR_delay1, PSLR_doppler1] = calc_PSLR_weighted2(S_fd1, tau_vec, fd_vec, fs, draw_flag);
+[PSLR_weighted1, PSLR_delay1, PSLR_doppler1] = calc_PSLR_weighted(S_fd1, tau_vec, fd_vec, fs, draw_flag);
+toc
+%% 
+tic
+[PSLR_weighted2, PSLR_delay2, PSLR_doppler2] = calc_PSLR_fast(S_fd1, tau_vec, fd_vec, fs, rho);
 toc

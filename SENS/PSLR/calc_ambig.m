@@ -31,7 +31,7 @@ for i = 1:N_tau
 
     % 计算该时延下所有多普勒点的模糊函数
     for j = 1:N_fd
-        % 公式(38): χ(τ, f_d) = |∫ s(t) · s*(t-τ) · exp(-j2πf_d·t) dt|^2
+        % 公式(38): χ(τ, f_d) = |∫ s(t) · s*(t-τ) · exp(-j2πf_d·t) dt|
         integrand = s_t .* conj(s_delayed) .* exp_fd(:, j);
         
         % 数值积分
